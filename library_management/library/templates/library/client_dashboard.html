@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ client.name }}!</h1>
+    <p>Email: {{ client.email }}</p>
+    {% if request.session.client_email %}
+        <p>You are logged in as {{ request.session.client_email }}.</p>
+        <ul>
+            <li><a href="{% url 'search_documents' %}">Search Documents</a></li>
+            <li><a href="{% url 'pay_overdue_fees' %}">Pay Overdue Fees</a></li>
+            <li><a href="{% url 'manage_payment_methods' %}">Manage Payment Methods</a></li>
+        </ul>
+        <p><a href="{% url 'client_logout' %}">Logout</a></p>
+    {% else %}
+        <p>You are not logged in.</p>
+        <p><a href="{% url 'client_login' %}">Login</a></p>
+    {% endif %}
+</body>
+</html>
